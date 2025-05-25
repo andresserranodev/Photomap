@@ -1,0 +1,14 @@
+{
+  "name": "south-america-map-gallery",
+  "version": "1.0.0",
+  "description": "Interactive map of South America with photo gallery",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "photoswipe": "^5.4.4",
+    "serve": "^14.2.1"
+  }
+} 
