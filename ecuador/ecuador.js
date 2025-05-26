@@ -1,7 +1,7 @@
-// Initialize gallery
+// Initialize gallery http://localhost:3000/ecuador/ecuador
 
-// Colombia coordinates (Bogotá)
-const colombiaCoords = [4.5709, -74.2973];
+// Colombia coordinates (Ecuador)
+const ecuadorCoords = [-0.7287461,-78.6389962];
 const initalZoom = 4;
 const focusZoom = 9;
 const timeOutZoom = 800;
@@ -17,7 +17,7 @@ const map = L.map('map', {
     zoomControl: false,
     minZoom: 3,
     maxZoom: 18
-}).setView([colombiaCoords[0], colombiaCoords[1]], initalZoom); // Center on South America
+}).setView([ecuadorCoords[0], ecuadorCoords[1]], initalZoom); // Center on South America
 
 // Add tile layer (OpenStreetMap)
 // 5. CyclOSM - Detailed map optimized for cycling/outdoor activities
@@ -31,7 +31,7 @@ L.control.zoom({
 }).addTo(map);
 
 // Create custom icon
-const colombiaIcon = L.icon({
+const ecuadorIcon = L.icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
     iconSize: [25, 41],
@@ -41,7 +41,7 @@ const colombiaIcon = L.icon({
 });
 
 // set marker to map
-const marker = L.marker(colombiaCoords, { icon: colombiaIcon }).addTo(map);
+const marker = L.marker(ecuadorCoords, { icon: ecuadorIcon }).addTo(map);
 marker.on('click', () => { initPhotoSwipe(); });
 
 // Init Zoom when the maps is ready
@@ -54,14 +54,14 @@ map.whenReady(() => {
 function zoomToColombia1() {
     setTimeout(() => {
         map.flyTo(
-            colombiaCoords, 
+            ecuadorCoords, 
             focusZoom, 
             { animate: true, duration: zoomDuration });
     }, timeOutZoom);
  
 }
 
-const photoGallery = 'https://photos.google.com/share/AF1QipPjwltaq3t0viHGxElXbPLhTI20kRVJ49OAfSbvaBLfLKZ8ub9iIvKHz0U-YWu-5w/memory/AF1QipPXGpTOGl1ZWvGpnPl5TL4-0YRk2AzIPm8OTYG2bpeh4NeTmFbQ6BurI9xVvEt9gw?key=ZkZQLUdpalU2TktnN0xBUDVQeURWdUpVSzFTamFR';
+const photoGallery = 'https://photos.google.com/share/AF1QipNj3g2SbO56SdZJCfOrcUIvZScycBj_LNjRQDeeabcoEj_2tKvT-3qJq__NreBACw?key=OF94SFg5TEotaEhteGdIa3RvY0Z0Z3d5TkVoUk9n';
 
 function zoomToColombia() {
     const redirectBtn = document.getElementById('redirect-btn');
@@ -72,7 +72,7 @@ function zoomToColombia() {
         }, 100);
     });
 
-    map.flyTo(colombiaCoords, focusZoom, {
+    map.flyTo(ecuadorCoords, focusZoom, {
         duration: zoomDuration,
         easeLinearity: 0.1
     });
@@ -88,7 +88,7 @@ map.on('moveend', () => {
 
 // Handle map click outside marker
 map.on('click', (e) => {
-    const markerPoint = map.latLngToContainerPoint(colombiaCoords);
+    const markerPoint = map.latLngToContainerPoint(ecuadorCoords);
     const clickPoint = map.latLngToContainerPoint(e.latlng);
     const distance = markerPoint.distanceTo(clickPoint);
     
@@ -100,15 +100,15 @@ map.on('click', (e) => {
 // Handle window resize
 window.addEventListener('resize', () => {
     if (window.innerWidth <= 768) {
-        map.setView(colombiaCoords, 5);
+        map.setView(ecuadorCoords, 5);
     } else {
-        map.setView(colombiaCoords, focusZoom);
+        map.setView(ecuadorCoords, focusZoom);
     }
 })
 
 // Map click handler
 map.on('click', (e) => {
-    const markerPoint = map.latLngToContainerPoint(colombiaCoords);
+    const markerPoint = map.latLngToContainerPoint(ecuadorCoords);
     const clickPoint = map.latLngToContainerPoint(e.latlng);
     const distance = markerPoint.distanceTo(clickPoint);
 });
@@ -117,26 +117,3 @@ map.on('click', (e) => {
 window.addEventListener('orientationchange', () => {
     setTimeout(updateMapHeight, delayZoom); // Delay to handle orientation change
 });
-
-// Create gallery items
-// Sample images for Colombia (you should replace these with your actual images)
-const colombiaImages = [
-    {
-        src: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1200&h=800&fit=crop',
-        caption: 'Cartagena, Colombia',
-        width: 1200,
-        height: 800
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1200&h=800&fit=crop',
-        caption: 'Bogotá, Colombia',
-        width: 1200,
-        height: 800
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=1200&h=800&fit=crop',
-        caption: 'Medellín, Colombia',
-        width: 1200,
-        height: 800
-    }
-];
