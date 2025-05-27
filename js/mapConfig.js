@@ -112,7 +112,7 @@ const REDIRECT_DELAY = 2000;
     this.map.once("zoomend", async () => {
       // Delay to open the photo gallery link
       setTimeout(() => {
-        //window.location.href = link;
+        window.location.href = link;
       }, REDIRECT_DELAY);
 
       // Only load GeoJSON if ruteFile exists and is not empty
